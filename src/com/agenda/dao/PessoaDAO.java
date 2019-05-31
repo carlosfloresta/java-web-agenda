@@ -10,7 +10,20 @@ import com.mysql.jdbc.Connection;
 
 public class PessoaDAO {
 	
+	
 	private Connection connection;
+	private PreparedStatement stmt;
+	
+	
+	
+	public PessoaDAO() {
+		
+		this.connection = new ConnectionFactory().getConnection();
+			
+		
+	}
+	
+	
 	
 	public void adiciona(Pessoa pessoa) {
 		
@@ -21,10 +34,9 @@ public class PessoaDAO {
 		
 		try {
 			
-			this.connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = this.connection.prepareStatement(SQL);
 			
-			stmt.setString(1, pessoa.getNome());
+			
+			this.stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEmail());
 			stmt.setString(3, pessoa.getEnd());
 			stmt.setString(4, pessoa.getTel());
@@ -48,9 +60,8 @@ public class PessoaDAO {
 		
 		try {
 			
-			this.connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = this.connection.prepareStatement(SQL);
 			
+			 this.connection.prepareStatement(SQL);
 			List<Pessoa> pessoas = new ArrayList<Pessoa>();
 			
 			ResultSet rs = stmt.executeQuery();
@@ -85,8 +96,7 @@ public class PessoaDAO {
 		
 		try {
 			
-			this.connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = this.connection.prepareStatement(SQL);
+			 this.connection.prepareStatement(SQL);
 			
 			stmt.setInt(1, pessoa.getId());
 			stmt.execute();
@@ -107,8 +117,7 @@ public class PessoaDAO {
 		
 try {
 			
-			this.connection = new ConnectionFactory().getConnection();
-			PreparedStatement stmt = this.connection.prepareStatement(SQL);
+	 this.connection.prepareStatement(SQL);
 			
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEmail());

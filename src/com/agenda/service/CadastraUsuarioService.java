@@ -7,16 +7,9 @@ import com.agenda.model.Pessoa;
 
 public class CadastraUsuarioService {
 	
-	PessoaDAO dao = new PessoaDAO();
+	private PessoaDAO dao = new PessoaDAO();
 	
-	public void cadastra(Pessoa pessoa) {
-
-		this.dao.adiciona(pessoa);
 	
-		
-		
-		
-	}
 	
 	public List<Pessoa>buscaPessoas() {
 		
@@ -29,9 +22,17 @@ public class CadastraUsuarioService {
 		dao.deletar(pessoa);
 	}
 	
-	public void alterarContato(Pessoa pessoa) {
+	
+	
+	
+	public void cadastrarOuAlterar(Pessoa pessoa) {
 		
-		dao.alterar(pessoa);
+		if(0 != pessoa.getId()) {
+			
+			this.dao.alterar(pessoa);
+		}else {
+			this.dao.adiciona(pessoa);
+		}
 	}
 	
 	
